@@ -1,7 +1,4 @@
 import Button from "../Button/Button";
-import { useState } from "react";
-
-import ItemCount from "../ItemCount/ItemCount";
 
 function Item(props) {
 
@@ -14,8 +11,7 @@ function Item(props) {
             <h6>{title}</h6>
             <h6>{price}</h6>
             <h6>{detail}</h6>
-            <Button>Comprar</Button>
-            <ItemCount>{stock}</ItemCount>
+            <Button>Ver mas</Button>
         </div>
     )
 }
