@@ -5,7 +5,7 @@ const CardWidget = () => {
   return (
     <div className='gn-header__item gn-header__cardwidget'>
         <a className='bar-header__link' href='#'>
-            <img className='' src={cart} width='32' height='32'/>
+            <img className='' src={cart} width='28' height='28'/>
         </a>
     </div>
   )
