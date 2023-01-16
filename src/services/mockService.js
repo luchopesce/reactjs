@@ -38,12 +38,13 @@ const obtenerListaProductos = ()=> {
     });
 }
 
-const obtenerProducto = ()=> {
+const obtenerProducto = (idUrl)=> {
     return new Promise((res, rej) =>{
+        const findItem = productos.find((item)=>{return (item.id === idUrl)})
         let error = false
         console.log("Conectando a la DB");
         setTimeout(()=>{
-            error ? console.log("Error al conectar") : res(productos[1])
+            error ? console.log("Error al conectar") : res(findItem)
         },1000);
     });
 }

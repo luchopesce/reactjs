@@ -13,6 +13,7 @@ const ItemListContainer = () => {
       setProductos(res)
     })
     .catch((error)=> alert(error));
+    return()=> console.log("Desmontamos ITC")
   },[])
 
 

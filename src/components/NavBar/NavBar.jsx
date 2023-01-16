@@ -8,7 +8,7 @@ const NavBar = () => {
   const links = [
     {
       link:"Store",
-      urlpage:"/store"
+      urlpage:"/"
     },
     {
       link:"Computadoras",
@@ -21,6 +21,10 @@ const NavBar = () => {
     {
       link:"Accesorios",
       urlpage:"/accesorios"
+    },
+    {
+      link:"Detallles",
+      urlpage:"/detalle"
     }
   ];
 
