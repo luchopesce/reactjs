@@ -1,5 +1,6 @@
 .flexContainer {
     margin-top: 50px !important;
+    margin-bottom: 50px !important;
     display: flex;
     flex-wrap: wrap;
     max-width: 1000px;
