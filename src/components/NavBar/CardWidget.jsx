@@ -5,7 +5,7 @@ import { Link } from 'react-router-dom'
 const CardWidget = () => {
   return (
     <div className='gn-header__item gn-header__cardwidget'>
-      <Link to="/Carrito" className='bar-header__link'>
+      <Link to="/carrito" className='bar-header__link'>
       <img className='' src={cart} width='28' height='28'/>
       </Link>
     </div>
