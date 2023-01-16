@@ -2,6 +2,7 @@ import './navbar.css'
 import logo from '../../assets/img/LOGO-STORECELL.svg'
 import CardWidget from './CardWidget'
 import NavItem from './NavItem'
+import { Link } from 'react-router-dom'
 
 const NavBar = () => {
 
@@ -12,19 +13,15 @@ const NavBar = () => {
     },
     {
       link:"Computadoras",
-      urlpage:"/computadoras"
+      urlpage:"/categoria/computadoras"
     },
     {
       link:"Celulares",
-      urlpage:"/celulares"
+      urlpage:"/categoria/celulares"
     },
     {
       link:"Accesorios",
-      urlpage:"/accesorios"
-    },
-    {
-      link:"Detallles",
-      urlpage:"/detalle"
+      urlpage:"/categoria/accesorios"
     }
   ];
 
@@ -34,12 +31,12 @@ return (
       <div className='gn-header__tier'>
         <div className='bar-header__lock-up'>
           <div className='bar-header__logo gn-header__item'>
-            <a href='#' className='bar-header__link bar-header-logo__link'>
-              <span className='-off-screen'>
+            <Link to="/" className='bar-header__link bar-header-logo__link'>
+            <span className='-off-screen'>
               StoreCELL Store
               </span>
               <img className='header-logo-img' src={logo}/>
-            </a>
+            </Link>
           </div>
         </div>
         <nav className='bar-header__link-bar'>
