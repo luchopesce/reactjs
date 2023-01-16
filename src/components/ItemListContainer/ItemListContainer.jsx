@@ -1,5 +1,5 @@
 import { useState, useEffect} from "react";
-import Item from "../Item/Item";
+import ItemList from "../ItemList/ItemList";
 import Flex from "../Flex/Flex"
 import "./itemlistcontainer.css"
 import obtenerListaProductos, { filtrarProducto } from "../../services/mockService";
@@ -32,7 +32,7 @@ const ItemListContainer = () => {
   return (
     <div>
       <Flex>
-        {productos.map((items) => <Item key={items.id} item={items}/>)}
+        {productos.map((items) => <ItemList key={items.id}>{items}</ItemList>)}
       </Flex>
     </div>
   )
