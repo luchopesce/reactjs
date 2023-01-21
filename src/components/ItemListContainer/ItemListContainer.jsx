@@ -30,11 +30,9 @@ const ItemListContainer = () => {
 
 
   return (
-    <div>
       <Flex>
-        {productos.map((items) => <ItemList key={items.id}>{items}</ItemList>)}
+      <ItemList productos={productos}/>
       </Flex>
-    </div>
   )
 }
 

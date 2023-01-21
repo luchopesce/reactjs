@@ -60,7 +60,7 @@ const filtrarProducto = (categoriaUrl)=> {
 
 const obtenerProducto = (idUrl)=> {
     return new Promise((res, rej) =>{
-        const findItem = productos.find((item)=>{return (item.id === idUrl)})
+        let findItem = productos.find((item)=>{return (item.id === parseInt(idUrl))})
         let error = false
         console.log("Conectando a la DB");
         setTimeout(()=>{

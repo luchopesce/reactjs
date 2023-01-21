@@ -3,8 +3,15 @@ import logo from '../../assets/img/LOGO-STORECELL.svg'
 import CardWidget from './CardWidget'
 import NavItem from './NavItem'
 import { Link } from 'react-router-dom'
+import { useContext } from 'react'
+import Button from '../Button/Button'
+import { cartContext } from '../../storage/cartContext'
+
 
 const NavBar = () => {
+
+  const context = useContext(cartContext);
+  console.log(context)
 
   const links = [
     {
@@ -35,7 +42,7 @@ return (
             <span className='-off-screen'>
               StoreCELL Store
               </span>
-              <img className='header-logo-img' src={logo}/>
+              <img className='header-logo-img' src={logo} alt="Logo"/>
             </Link>
           </div>
         </div>

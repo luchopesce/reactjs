@@ -1,9 +1,9 @@
 import Item from "../Item/Item";
 
-const ItemList = (props) => {
+const ItemList = ({productos}) => {
   return (
     <>
-    <Item item={props.children}></Item>
+    {productos.map((items) => <Item key={items.id} itemIterado={items}/>)}
     </>
   )
 }

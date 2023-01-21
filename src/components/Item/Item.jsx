@@ -3,7 +3,7 @@ import Button from "../Button/Button";
 
 function Item(props) {
 
-    const {id, title, category, stock, price, detail, imgurl} = props.item
+    const {id, title, category, stock, price, detail, imgurl} = props.itemIterado
 
 
     return(
