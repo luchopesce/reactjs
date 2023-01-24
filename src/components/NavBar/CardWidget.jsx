@@ -5,12 +5,14 @@ import { cartContext } from '../../storage/cartContext'
 import { useContext} from 'react'
 
 const CardWidget = () => {
-  const context = useContext(cartContext)
+  const {sumaCount, cart} = useContext(cartContext)
   return (
     <div className='gn-header__item gn-header__cardwidget'>
-      <Link to="/carrito" className='bar-header__link'>
-      <img className='' src={cartLogo} width='28' height='28'/>
-      {context.cart.length}
+      <Link to="/cart" className='bar-header__link'>
+      <img className='' src={cartLogo} width='28' height='28' alt='Logo'/>
+      {
+      cart.length > 0 && sumaCount
+      }
       </Link>
     </div>
   )

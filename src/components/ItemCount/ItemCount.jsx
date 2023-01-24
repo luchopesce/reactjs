@@ -1,7 +1,7 @@
 import { useState } from "react";
 import Button from "../Button/Button";
 
-const ItemCount = ({ onAddToCart, stock }) => {
+const ItemCount = ({ onAddToCart, stock}) => {
     const [count, setCount] = useState(1);
 
     function handleCountSum(){

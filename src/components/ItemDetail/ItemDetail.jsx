@@ -1,7 +1,13 @@
 import ItemCount from "../ItemCount/ItemCount"
 import Flex from "../Flex/Flex"
+import { Link } from "react-router-dom"
+import { cartContext } from "../../storage/cartContext";
+import { useContext } from "react";
 
-const ItemDetail = ({title, stock, price, detail, imgurl, onAddToCart}) => {
+const ItemDetail = ({id, title, stock, price, detail, imgurl, onAddToCart}) => {
+  const {cart} = useContext(cartContext)
+
+  const searchItemID = cart.find((item) => item.id === id)
 
   return(
     <Flex>
@@ -10,7 +16,9 @@ const ItemDetail = ({title, stock, price, detail, imgurl, onAddToCart}) => {
           <h6>{title}</h6>
           <h6>{price}</h6>
           <h6>{detail}</h6>
-          <ItemCount onAddToCart={onAddToCart} stock={stock}/>
+          {searchItemID ? <Link to="/cart" className="btn btn-primary" >Ir al carro </Link> :
+          <ItemCount onAddToCart={onAddToCart} stock={stock} itemid={id}/>
+          }
       </div>
     </Flex>
   )
