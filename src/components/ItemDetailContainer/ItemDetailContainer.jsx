@@ -1,6 +1,6 @@
 import { useState, useEffect, useContext} from "react";
 import ItemDetail from "../ItemDetail/ItemDetail";
-import {obtenerProducto} from "../../services/mockService"
+import {obtenerProducto} from "../../services/firebase"
 import { useParams } from "react-router-dom";
 import { cartContext } from "../../storage/cartContext";
 import Loader from "../Loader/Loader";

@@ -2,7 +2,9 @@ import "./loader.css"
 
 const Loader = () => {
   return (
-    <div class="lds-dual-ring"></div>
+    <div className="d-flex justify-content-center ">
+    <div className="lds-dual-ring"></div>
+    </div>
   )
 }
 
