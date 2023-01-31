@@ -5,7 +5,7 @@ const Filter = ({ value}) => {
   return (
     <div>
       {value.map((item) => (
-        <Link to={item.urlpage}>
+        <Link key={item.link} to={item.urlpage}>
         {item.link}
         </Link>
       ))}

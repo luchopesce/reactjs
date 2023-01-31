@@ -6,6 +6,7 @@ import { BrowserRouter, Route, Routes} from 'react-router-dom';
 import PageNotFound from './pages/PageNotFound';
 import { CartProvider } from './storage/cartContext';
 import CartContainer from './components/CartContainer/CartContainer';
+import CheckOrdenContainer from './components/CheckOrdenContainer/CheckOrdenContainer';
 
 function App() {
   return (
@@ -17,9 +18,9 @@ function App() {
       <Route path='/' element={<ItemListContainer/>}/>
       <Route path='/detalle/:itemid' element={<ItemDetailContainer/>}/>
       <Route path='/category/:itemcategoria' element={<ItemListContainer/>}/>
-      <Route path='/category/:itemcategoria' element={<ItemListContainer/>}/>
       <Route path='/marca/:marcaitem' element={<ItemListContainer/>}/>
       <Route path='/cart' element={<CartContainer/>}/>
+      <Route path='/checkorden/:orderid' element={<CheckOrdenContainer/>}/>
       <Route path='*' element={<PageNotFound/>}></Route>
     </Routes>
     </CartProvider>

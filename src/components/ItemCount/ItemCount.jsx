@@ -32,7 +32,9 @@ const ItemCount = ({ onAddToCart, stock }) => {
         {" "}
         +{" "}
       </button>
-      <Button onClick={() => onAddToCart(count)}>Agregar al carrito</Button>
+      {
+        onAddToCart && <Button onClick={() => onAddToCart(count)}>Agregar al carrito</Button>
+      }
     </div>
   );
 };

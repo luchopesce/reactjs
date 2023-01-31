@@ -7,7 +7,7 @@ const FilterContainer = ({ productos }) => {
   let newCategory = new Map(categoryMap);
   let categoryArr = [...newCategory.values()];
   let category = categoryArr.map((item) => {
-    return {link: item, urlpage:`/category/${item}`};
+    return { link: item, urlpage: `/category/${item}` };
   });
 
   let marcaMap = productos.map((item) => {
@@ -16,7 +16,7 @@ const FilterContainer = ({ productos }) => {
   let newMarca = new Map(marcaMap);
   let marcaArr = [...newMarca.values()];
   let marca = marcaArr.map((item) => {
-    return {link: item, urlpage:`/marca/${item}`};
+    return { link: item, urlpage: `/marca/${item}` };
   });
 
   return (
@@ -27,8 +27,8 @@ const FilterContainer = ({ productos }) => {
             <div className="">
               <h4 className="">Categories</h4>
               <ul className="">
-                <Filter value={category} />
-                <Filter value={marca} />
+                <Filter key={productos.id} value={category} />
+                <Filter key={productos.id} value={marca} />
               </ul>
             </div>
           </div>

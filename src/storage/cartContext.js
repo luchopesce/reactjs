@@ -29,33 +29,57 @@ const CartProvider = (props) => {
     const updateCart = (e) => {
         const newProduct = cart.map(product => {
             if (product.id === e.target.id) {
-                product.count = Number.parseInt(e.target.value);
+                if (!Number.parseInt(e.target.value) || undefined || 0) {
+                    product.count = 1
+                }
+                else if (Number.parseInt(e.target.value) > product.stock) {
+                    product.count = product.stock
+                }
+                else {
+                    product.count = Number.parseInt(e.target.value);
+                }
             }
             return product;
         })
         setCart(newProduct)
     }
 
-    function removeItemCart(itemid, countDelete) {
+    function sumCart(itemid) {
+        const newProduct = cart.map(product => {
+            if (product.id === itemid) {
+                if (product.count >= product.stock) {
+                    product.count = product.stock
+                }
+                else {
+                    product.count += 1
+                }
+            }
+            return product;
+        })
+        setCart(newProduct)
+    }
+
+    function restCart(itemid) {
+        const newProduct = cart.map(product => {
+            if (product.id === itemid) {
+                if (product.count <= 1) {
+                    product.count = 1
+                }
+                else {
+                    product.count -= 1
+                }
+            }
+            return product;
+        })
+        setCart(newProduct)
+    }
+
+    function removeItemCart(itemid) {
         let itemRemove = cart.findIndex(itemInCart => itemInCart.id === itemid)
         let newRemove = cart.map((item) => item)
         if (itemRemove !== -1) {
-            if (countDelete <= newRemove[itemRemove].count) {
-                newRemove[itemRemove].count -= countDelete
-                if (newRemove[itemRemove].count < 1) {
-                    let newRemoveArr = newRemove.filter((item) => { return item.id !== itemid })
-                    setCart(newRemoveArr)
-                }
-                else {
-                    setCart(newRemove)
-                }
-            }
-            else {
-                alert("No puedes remover menos de lo que agregaste")
-            }
-        }
-        else {
-            alert("No tienes nada agregado al carrito")
+            let newRemoveArr = newRemove.filter((item) => { return item.id !== itemid })
+            setCart(newRemoveArr)
         }
     }
 
@@ -63,14 +87,10 @@ const CartProvider = (props) => {
         if (cart.length > 0) {
             setCart([]);
         }
-        else {
-            alert("No tienes nada en el carro")
-        }
     }
 
-
     return (
-        <cartContext.Provider value={{ cart, addItemCart, removeItemCart, clearCart, updateCart, sumaCount, getTotalPrice}}>
+        <cartContext.Provider value={{ cart, addItemCart, removeItemCart, clearCart, updateCart, sumCart, restCart, sumaCount, getTotalPrice }}>
             {props.children}
         </cartContext.Provider>
     )

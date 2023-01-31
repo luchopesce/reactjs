@@ -6,7 +6,6 @@ import Loader from "../Loader/Loader";
 import {
   obtenerListaProductos,
   filtrarProducto,
-  productoFiltrado
 } from "../../services/firebase";
 import FilterContainer from "../FilterContainer/FilterContainer";
 
@@ -23,32 +22,47 @@ const ItemListContainer = () => {
         })
         .catch((error) => alert(error))
         .finally(() => setLoading(false));
-    } else if(!marcaitem){
+    } else if (!marcaitem) {
       filtrarProducto("category", itemcategoria)
         .then((res) => {
           setProductos(res);
         })
         .catch((error) => alert(error))
         .finally(() => setLoading(false));
-    }
-    else if(!itemcategoria){
+    } else if (!itemcategoria) {
       filtrarProducto("marca", marcaitem)
-      .then((res) => {
-        setProductos(res);
-      })
-      .catch((error) => alert(error))
-      .finally(() => setLoading(false));
+        .then((res) => {
+          setProductos(res);
+        })
+        .catch((error) => alert(error))
+        .finally(() => setLoading(false));
     }
     return () => console.log("Desmontamos ITC");
   }, [itemcategoria, marcaitem]);
 
-  return (
-    <>
+  if (isLoading) {
+    return (
       <Flex>
-        {isLoading ? (
-          <Loader />
+        <Loader />
+      </Flex>
+    );
+  } else {
+    return (
+      <Flex>
+        {itemcategoria ? (
+          <div className="row g-0 d-flex justify-content-center">
+            <div className="row d-flex col-lg-12">
+              <ItemList key={productos.id} productos={productos} />
+            </div>
+          </div>
         ) : (
-          <div className="row g-0">
+          <div className="row g-0 d-flex justify-content-center">
+            <div className="d-flex col-lg-4"></div>
+            <div className="row d-flex col-lg-8">
+              <div className="d-flex justify-content-between align-items-center mb-5">
+                <h1 className="fw-bold mb-0 text-black mt-5">Productos</h1>
+              </div>
+            </div>
             <div className="d-flex col-lg-4">
               <FilterContainer productos={productos} />
             </div>
@@ -58,8 +72,8 @@ const ItemListContainer = () => {
           </div>
         )}
       </Flex>
-    </>
-  );
+    );
+  }
 };
 
 export default ItemListContainer;
