@@ -10,13 +10,15 @@ const ItemDetail = ({
   imgurl,
   onAddToCart,
   searchItemID,
-  stockUpdate
+  stockUpdate,
 }) => {
-  console.log(stockUpdate)
+  console.log(stockUpdate);
   return (
     <div className="col-lg-6 p-3">
       <div className="card text-center">
-        <div className="card-header">{title}</div>
+        <div className="card-header">
+          <h5>{title}</h5>
+        </div>
         <div className="card-body card-registration">
           <Link to={`/detalle/${id}`}>
             <img
@@ -27,14 +29,19 @@ const ItemDetail = ({
             />
           </Link>
           <p className="card-text">
-            {detail}
+            <h6>{detail}</h6>
           </p>
           {searchItemID ? (
             <Link to="/cart" className="btn btn-primary">
               Ir al carro
             </Link>
           ) : (
-            <ItemCount onAddToCart={onAddToCart} stock={stock} itemid={id} />
+            <ItemCount
+              onAddToCart={onAddToCart}
+              stock={stock}
+              itemid={id}
+              stockUpdate={stockUpdate}
+            />
           )}
         </div>
         <div className="card-footer text-muted">{price}</div>

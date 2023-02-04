@@ -1,6 +1,6 @@
 import { useState, useEffect, useContext } from "react";
 import ItemDetail from "../ItemDetail/ItemDetail";
-import { obtenerProducto } from "../../services/firebase";
+import { obtenerProducto } from "../../services/db";
 import { useParams } from "react-router-dom";
 import { cartContext } from "../../storage/cartContext";
 import Loader from "../Loader/Loader";
@@ -12,6 +12,11 @@ const ItemDetailContainer = () => {
   const { addItemCart, cart } = useContext(cartContext);
   const [isLoading, setLoading] = useState(true);
   const [isInCart, setIsInCart] = useState(false);
+  const searchItemID = cart.find((item) => item.id === producto.id);
+  let stockUpdate = producto.stock
+  if (searchItemID){
+    stockUpdate = producto.stock - searchItemID.count
+  }
 
   function handleAddToCart(count) {
     addItemCart({ ...producto, count: count });
@@ -26,12 +31,6 @@ const ItemDetailContainer = () => {
       .catch((error) => alert(error))
       .finally(() => setLoading(false));
   }, [params]);
-
-  const searchItemID = cart.find((item) => item.id === producto.id);
-  let stockUpdate = producto.stock
-  if (searchItemID){
-    stockUpdate = producto.stock - searchItemID.count
-  }
 
   return (
     <>

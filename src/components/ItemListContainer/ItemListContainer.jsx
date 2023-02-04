@@ -6,7 +6,7 @@ import Loader from "../Loader/Loader";
 import {
   obtenerListaProductos,
   filtrarProducto,
-} from "../../services/firebase";
+} from "../../services/db";
 import FilterContainer from "../FilterContainer/FilterContainer";
 
 const ItemListContainer = () => {
@@ -60,7 +60,7 @@ const ItemListContainer = () => {
             <div className="d-flex col-lg-4"></div>
             <div className="row d-flex col-lg-8">
               <div className="d-flex justify-content-between align-items-center mb-5">
-                <h1 className="fw-bold mb-0 text-black mt-5">Productos</h1>
+                <h1 className=" mb-0 text-black mt-5 display-5">Productos</h1>
               </div>
             </div>
             <div className="d-flex col-lg-4">

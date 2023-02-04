@@ -4,7 +4,7 @@ import Flex from "../Flex/Flex";
 import Button from "../Button/Button";
 import "./cartcontainer.css";
 import { Link } from "react-router-dom";
-import { createOrder } from "../../services/firebase";
+import { createOrder } from "../../services/db";
 import Swal from "sweetalert2";
 import { useNavigate } from "react-router";
 

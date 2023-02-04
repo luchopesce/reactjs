@@ -1,12 +1,11 @@
-import { Link } from 'react-router-dom'
+import { Link } from "react-router-dom";
 
-const Filter = ({ value}) => {
-
+const Filter = ({ value }) => {
   return (
     <div>
       {value.map((item) => (
         <Link key={item.link} to={item.urlpage}>
-        {item.link}
+          {item.link}
         </Link>
       ))}
     </div>

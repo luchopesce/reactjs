@@ -6,14 +6,12 @@ const Flex = (props) => {
       <div className="container py-5 h-100">
         <div className="row d-flex justify-content-center align-items-center h-100">
           <div className="col-12">
-            <div className="card">
                 <div className="card-body p-0">
                   {props.children}
                 </div>
               </div>
             </div>
           </div>
-        </div>
     </section>
   )
 }
