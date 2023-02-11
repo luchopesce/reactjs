@@ -1,57 +1,14 @@
-import { useContext } from "react";
+import { useContext, useEffect } from "react";
 import { cartContext } from "../../storage/cartContext";
 import Flex from "../Flex/Flex";
 import Button from "../Button/Button";
 import "./cartcontainer.css";
 import { Link } from "react-router-dom";
-import { createOrder } from "../../services/db";
-import Swal from "sweetalert2";
 import { useNavigate } from "react-router";
+import Swal from "sweetalert2";
 
 const CartContainer = () => {
   const navigate = useNavigate();
-
-  function handleCheckout(evt) {
-    const items = cart.map((item) => ({
-      id: item.id,
-      price: item.price,
-      count: item.count,
-      title: item.title,
-    }));
-    const order = {
-      buyer: {
-        name: "Luciano",
-        email: "luchopesce96@gmail.com",
-        phone: "3548555854",
-      },
-      items: items,
-      total: getTotalPrice,
-      date: new Date(),
-    };
-    console.table(order);
-    createOrder(order)
-      .then((res) => {
-        clearCart();
-        Swal.fire({
-          title: "Compra realizada con exito!",
-          text: `Compraste el producto con el id ${res}`,
-          icon: "success",
-          showConfirmButton: false,
-          timer: 2000,
-        }).then(() => {
-          navigate(`/checkorden/${res}`);
-        });
-      })
-      .catch((error) =>
-        Swal.fire({
-          title: "Problemas para realizar la compra!",
-          text: `${error}`,
-          icon: "error",
-          confirmButtonText: "OK",
-        })
-      );
-  }
-
   const {
     cart,
     getTotalPrice,
@@ -62,6 +19,22 @@ const CartContainer = () => {
     sumaCount,
     clearCart,
   } = useContext(cartContext);
+
+  function ClearCart() {
+    Swal.fire({
+      icon: "warning",
+      title: "Eliminar productos del carro",
+      text: `Estas por eliminar los productos del carro, deseas continuar?`,
+      showCancelButton: true,
+      confirmButtonText: "Eliminar productos",
+    }).then((result) => {
+      if (result.isConfirmed) {
+        clearCart();
+        Swal.fire("Productos eliminados", "", "success");
+      }
+    });
+  }
+
   if (!cart.length) {
     return (
       <Flex>
@@ -76,7 +49,17 @@ const CartContainer = () => {
             <div className="p-5">
               <div className="d-flex justify-content-between align-items-center mb-5">
                 <h1 className="fw-bold mb-0 text-black">Carro de compras</h1>
-                <h6 className="mb-0 text-muted">Carrito({cart.length})</h6>
+                <div className="d-flex">
+                  <h6 className="mb-0 mx-2 text-muted">
+                    Carrito({cart.length})
+                  </h6>
+                  <Button
+                    onClick={() => ClearCart()}
+                    className="btn btn-link p-0"
+                  >
+                    <i className="bi bi-trash3 text-muted"></i>
+                  </Button>
+                </div>
               </div>
               {cart.map((itemInCart) => (
                 <div
@@ -96,12 +79,12 @@ const CartContainer = () => {
                     <h6 className="text-black mb-0">{itemInCart.detail}</h6>
                   </div>
                   <div className="col-md-3 col-lg-3 col-xl-2 d-flex">
-                    <button
+                    <Button
                       className="btn btn-link px-2"
                       onClick={() => restCart(itemInCart.id)}
                     >
                       <i className="bi bi-dash" />
-                    </button>
+                    </Button>
                     <input
                       id={itemInCart.id}
                       min="1"
@@ -110,23 +93,23 @@ const CartContainer = () => {
                       className="form-control form-control-sm"
                       onChange={(e) => updateCart(e)}
                     />
-                    <button
+                    <Button
                       className="btn btn-link px-2"
                       onClick={() => sumCart(itemInCart.id)}
                     >
                       <i className="bi bi-plus" />
-                    </button>
+                    </Button>
                   </div>
                   <div className="col-md-3 col-lg-2 col-xl-2 offset-lg-1">
                     <h6 className="mb-0">$ {itemInCart.price}</h6>
                   </div>
                   <div className="col-md-1 col-lg-1 col-xl-1 text-end">
-                    <button
+                    <Button
                       className="btn btn-danger"
                       onClick={() => removeItemCart(itemInCart.id)}
                     >
                       <i className="bi bi-x" />
-                    </button>
+                    </Button>
                   </div>
                 </div>
               ))}
@@ -152,10 +135,8 @@ const CartContainer = () => {
               <h5 className="text-uppercase mb-3">Metodo de envio</h5>
               <div className="mb-4 pb-2">
                 <select className="form-select">
-                  <option value="1">Standard-Delivery- €5.00</option>
-                  <option value="2">Two</option>
-                  <option value="3">Three</option>
-                  <option value="4">Four</option>
+                  <option value="1">Envio a domicilio</option>
+                  <option value="2">Retiro en la sucursal</option>
                 </select>
               </div>
               <h5 className="text-uppercase mb-3">Codigo postal</h5>
@@ -167,7 +148,7 @@ const CartContainer = () => {
                     className="form-control"
                   />
                   <label className="floatingInput">
-                    Ingrese su codigo postal
+                    Calcular costo de envio
                   </label>
                 </div>
               </div>
@@ -176,7 +157,12 @@ const CartContainer = () => {
                 <h5 className="text-uppercase">Precio total</h5>
                 <h5>$ {getTotalPrice}</h5>
               </div>
-              <Button onClick={handleCheckout} className="btn btn-dark">
+              <Button
+                onClick={() => {
+                  navigate("checkorden");
+                }}
+                className="btn btn-dark"
+              >
                 Continuar checkout
               </Button>
             </div>

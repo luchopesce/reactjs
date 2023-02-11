@@ -3,34 +3,23 @@ import ItemList from "../ItemList/ItemList";
 import Flex from "../Flex/Flex";
 import { useParams } from "react-router";
 import Loader from "../Loader/Loader";
-import {
-  obtenerListaProductos,
-  filtrarProducto,
-} from "../../services/db";
-import FilterContainer from "../FilterContainer/FilterContainer";
+import { obtenerListaProductos, filtrarProducto } from "../../services/db";
 
 const ItemListContainer = () => {
   const [productos, setProductos] = useState([]);
   const [isLoading, setLoading] = useState(true);
-  let { itemcategoria, marcaitem } = useParams();
+  let { itemcategoria} = useParams();
 
   useEffect(() => {
-    if (!itemcategoria && !marcaitem) {
+    if (!itemcategoria) {
       obtenerListaProductos()
         .then((res) => {
           setProductos(res);
         })
         .catch((error) => alert(error))
         .finally(() => setLoading(false));
-    } else if (!marcaitem) {
+    } else {
       filtrarProducto("category", itemcategoria)
-        .then((res) => {
-          setProductos(res);
-        })
-        .catch((error) => alert(error))
-        .finally(() => setLoading(false));
-    } else if (!itemcategoria) {
-      filtrarProducto("marca", marcaitem)
         .then((res) => {
           setProductos(res);
         })
@@ -38,7 +27,7 @@ const ItemListContainer = () => {
         .finally(() => setLoading(false));
     }
     return () => console.log("Desmontamos ITC");
-  }, [itemcategoria, marcaitem]);
+  }, [itemcategoria]);
 
   if (isLoading) {
     return (
@@ -64,7 +53,6 @@ const ItemListContainer = () => {
               </div>
             </div>
             <div className="d-flex col-lg-4">
-              <FilterContainer productos={productos} />
             </div>
             <div className="row d-flex col-lg-8">
               <ItemList key={productos.id} productos={productos} />

@@ -14,39 +14,48 @@ const ItemDetail = ({
 }) => {
   console.log(stockUpdate);
   return (
-    <div className="col-lg-6 p-3">
-      <div className="card text-center">
-        <div className="card-header">
-          <h5>{title}</h5>
-        </div>
-        <div className="card-body card-registration">
-          <Link to={`/detalle/${id}`}>
+    <section className="py-5">
+      <div className="container px-4 px-lg-5 my-5">
+        <div className="row gx-4 gx-lg-5 align-items-center">
+          <div className="col-md-6">
             <img
-              className="hover-shadow"
-              height="250px"
+              className="card-img-top mb-5 mb-md-0"
               src={imgurl}
               alt={title}
             />
-          </Link>
-          <p className="card-text">
-            <h6>{detail}</h6>
-          </p>
-          {searchItemID ? (
-            <Link to="/cart" className="btn btn-primary">
-              Ir al carro
-            </Link>
-          ) : (
-            <ItemCount
-              onAddToCart={onAddToCart}
-              stock={stock}
-              itemid={id}
-              stockUpdate={stockUpdate}
-            />
-          )}
+          </div>
+          <div className="col-md-6">
+            <div className="small mb-1">ID: {id}</div>
+            <h1 className="display-5 fw-bolder">{title}</h1>
+            <div className="fs-5 mb-5">
+              <span className="text-decoration-line-through">$45.00</span>
+              <span className="mx-2 h4">${price}</span>
+              <div className="mt-3">
+                <span className="text-green">Stock disponible: {stock} u.</span>
+                </div>
+            </div>
+            <p className="lead">{detail}</p>
+            <div className="d-flex">
+              {searchItemID ? (
+                <Link
+                  to="/cart"
+                  className="btn btn-outline-dark flex-shrink-0 p-2"
+                >
+                  Ir al carro
+                </Link>
+              ) : (
+                <ItemCount
+                  onAddToCart={onAddToCart}
+                  stock={stock}
+                  itemid={id}
+                  stockUpdate={stockUpdate}
+                />
+              )}
+            </div>
+          </div>
         </div>
-        <div className="card-footer text-muted">{price}</div>
       </div>
-    </div>
+    </section>
   );
 };
 

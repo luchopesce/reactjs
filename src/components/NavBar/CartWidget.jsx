@@ -1,9 +1,8 @@
-import "./cardwidget.css";
 import { Link } from "react-router-dom";
 import { cartContext } from "../../storage/cartContext";
 import { useContext } from "react";
 
-const CardWidget = () => {
+const CartWidget = () => {
   const { sumaCount, cart } = useContext(cartContext);
   return (
     <Link to="/cart" className="bar-header__link">
@@ -25,4 +24,4 @@ const CardWidget = () => {
   );
 };
 
-export default CardWidget;
+export default CartWidget;

@@ -19,8 +19,14 @@ const ItemDetailContainer = () => {
   }
 
   function handleAddToCart(count) {
-    addItemCart({ ...producto, count: count });
-    setIsInCart(true);
+    if (!Number.parseInt(count) || undefined || 0){
+      return
+    }
+    else {
+      addItemCart({ ...producto, count: count });
+      setIsInCart(true);
+    }
+
   }
 
   useEffect(() => {

@@ -1,10 +1,14 @@
 import "./navbar.css";
 import logo from "../../assets/img/LOGO-STORECELL.svg";
-import CardWidget from "./CardWidget";
+import CartWidget from "./CartWidget";
 import NavItem from "./NavItem";
 import { Link } from "react-router-dom";
+import { useContext } from "react";
+import { authContext } from "../../services/auth";
 
 const NavBar = () => {
+  const { isLogin, singLog } = useContext(authContext);
+
   const links = [
     {
       link: "Store",
@@ -42,21 +46,33 @@ const NavBar = () => {
                 <NavItem key={elemento.urlpage} page={elemento} />
               ))}
             </ul>
-              <div className="col-md-2 col-xxl-1 text-end d-none d-lg-block">
-                <div className="list-inline me-4">
-                  <div className="list-inline-item me-4">
-                    <CardWidget />
-                  </div>
-                  <div className="list-inline-item">
-                    <div className="text-muted">
-                      <Link to="/Login">
+            <div className="col-md-2 col-xxl-1 text-end d-none d-lg-block">
+              <div className="list-inline me-4">
+                <div className="list-inline-item me-4">
+                  <CartWidget />
+                </div>
+                <div className="list-inline-item me-4">
+                  <div className="text-muted">
+                    <Link to="/login">
                       <i
                         className="bi bi-person-fill text-black"
                         style={{ fontSize: "1.2rem" }}
                       ></i>
+                    </Link>
+                  </div>
+                </div>
+                {isLogin && (
+                  <div className="list-inline-item">
+                    <div className="text-muted">
+                      <Link onClick={() => singLog()}>
+                        <i
+                          className="bi bi-box-arrow-left text-black"
+                          style={{ fontSize: "1.2rem" }}
+                        ></i>
                       </Link>
                     </div>
-                </div>
+                  </div>
+                )}
               </div>
             </div>
           </nav>
