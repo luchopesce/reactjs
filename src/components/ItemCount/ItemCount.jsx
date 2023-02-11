@@ -26,9 +26,6 @@ const ItemCount = ({ onAddToCart, stockUpdate }) => {
   if (stockUpdate === 0) {
     return (
       <div>
-        <h6 className="alert alert-danger p-2">
-          Producto actualmente sin stock
-        </h6>
       </div>
     );
   } else {

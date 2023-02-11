@@ -31,8 +31,16 @@ const ItemDetail = ({
               <span className="text-decoration-line-through">$45.00</span>
               <span className="mx-2 h4">${price}</span>
               <div className="mt-3">
-                <span className="text-green">Stock disponible: {stock} u.</span>
-                </div>
+                {stockUpdate === 0 ? (
+                  <h6 className="alert alert-danger p-2 text-center">
+                    Producto actualmente sin stock
+                  </h6>
+                ) : (
+                  <span className="text-green">
+                    Stock disponible: {stock} u.
+                  </span>
+                )}
+              </div>
             </div>
             <p className="lead">{detail}</p>
             <div className="d-flex">
