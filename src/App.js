@@ -8,9 +8,9 @@ import { CartProvider } from './storage/cartContext';
 import { AuthProvider } from './services/auth';
 import CartContainer from './components/CartContainer/CartContainer';
 import CheckOrdenContainer from './components/CheckOrdenContainer/CheckOrdenContainer';
-import Login from './components/Login/Login';
-import Register from './components/Login/Register';
-import UserContainer from './components/Login/UserContainer'
+import Loggin from './components/Loggin/Loggin';
+import Register from './components/Loggin/Register';
+import UserContainer from './components/Loggin/UserContainer'
 
 
 function App() {
@@ -27,7 +27,7 @@ function App() {
               <Route path='/category/:itemcategoria' element={<ItemListContainer />} />
               <Route path='/cart' element={<CartContainer />} />
               <Route path='cart/checkorden' element={<CheckOrdenContainer />} />
-              <Route path='/login' element={<Login />} />
+              <Route path='/login' element={<Loggin />} />
               <Route path='/register' element={<Register />} />
               <Route path='/myaccount' element={<UserContainer />} />
               <Route path='*' element={<PageNotFound />}></Route>

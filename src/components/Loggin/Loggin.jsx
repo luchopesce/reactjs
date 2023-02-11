@@ -5,7 +5,7 @@ import { useContext } from "react";
 import { authContext } from "../../services/auth";
 import { Link } from "react-router-dom";
 
-const Login = () => {
+const Loggin = () => {
   const { isLogin, iniciarSesion } = useContext(authContext);
   const [error, setError] = useState(false);
   const navigate = useNavigate();
@@ -40,15 +40,6 @@ const Login = () => {
       }
       return;
     }
-    // if (isRegister) {
-    //   crearUsuario(correo, password)
-    //     .then((usuarioFirebase) => {
-    //       console.log("usuario creado:", usuarioFirebase);
-    //     })
-    //     .catch((error) => {
-    //       console.log(error);
-    //     });
-    // } else {    }
     iniciarSesion(correo, password)
       .then((usuarioFirebase) => {
         console.log("sesión iniciada con:", usuarioFirebase.user);
@@ -146,4 +137,4 @@ const Login = () => {
   }
 };
 
-export default Login;
+export default Loggin;
